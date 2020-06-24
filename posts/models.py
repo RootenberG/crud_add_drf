@@ -49,7 +49,7 @@ class Comment(models.Model):
 
 
 def reset_upvotes():
-    t = threading.Thread(target=some_fn)
+    t = threading.Thread(target=cleaner)
     t.setDaemon(True)
     t.start()
     return True
@@ -61,7 +61,7 @@ def del_all():
         i.delete()
 
 
-def some_fn():
+def cleaner():
     schedule.every().day.at("00:00").do(del_all)
     while True:
         schedule.run_pending()
