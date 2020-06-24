@@ -5,15 +5,14 @@ import threading
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
-
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.fields import GenericRelation
-
 from django.contrib.contenttypes.models import ContentType
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, related_name="likes", on_delete=models.CASCADE)
+    user = models.ForeignKey(User,
+                             related_name="likes", on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey("content_type", "object_id")
@@ -37,13 +36,10 @@ class Post(models.Model):
     def total_likes(self):
         return self.likes.count()
 
-    # @classmethod
-    # def set_zero(cls):
-    #     return cls.likes.clean()
-
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,
+                             related_name="comments", on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -52,30 +48,24 @@ class Comment(models.Model):
         return "{}-{}".format(self.post.title, str(self.author.username))
 
 
-def shut_down():
-    # Do some stuff
-    # Offload the blocking job to a new thread
-
-    t = threading.Thread(target=some_fn, args=(id,), kwargs={})
+def reset_upvotes():
+    t = threading.Thread(target=some_fn)
     t.setDaemon(True)
     t.start()
-
     return True
 
 
-def some_fn(id):
-    def del_all():
-        queryset = Like.objects.all()
+def del_all():
+    queryset = Like.objects.all()
+    for i in queryset:
+        i.delete()
 
-        for i in queryset:
-            i.delete()
 
-    schedule.every(10).seconds.do(del_all)
-
+def some_fn():
+    schedule.every().day.at("00:00").do(del_all)
     while True:
-        # Do the job, get result in res
         schedule.run_pending()
         time.sleep(1)
 
 
-shut_down()
+reset_upvotes()
