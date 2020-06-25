@@ -13,14 +13,6 @@ class LikedMixin:
         services.add_like(obj, request.user)
         return Response()
 
-    @action(detail=True, methods=["POST"])
-    def unlike(self, request, pk=None):
-        """Removes like from`obj`.
-        """
-        obj = self.get_object()
-        services.remove_like(obj, request.user)
-        return Response()
-
     @action(detail=True, methods=["GET"])
     def fans(self, request, pk=None):
         """Gets all users who liked `obj`.

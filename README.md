@@ -3,6 +3,8 @@
 ## Live
 https://fierce-thicket-33452.herokuapp.com/api/v1/
 
+## Postman doc
+https://documenter.getpostman.com/view/11842172/SzzrYuCW
 ### setup environment:
 ```
 virtualenv -p python3.7 .venv
