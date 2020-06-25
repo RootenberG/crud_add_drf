@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "rest_framework",
     # Local
     "posts.apps.PostsConfig",
+    "rest_framework.authtoken",  # new
+    "rest_auth",
 ]
 
 MIDDLEWARE = [
@@ -122,7 +124,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+# rest
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated",],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 

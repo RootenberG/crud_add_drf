@@ -4,3 +4,4 @@ schedule==0.6.0
 dj-database-url
 gunicorn
 whitenoise
+django-rest-auth
