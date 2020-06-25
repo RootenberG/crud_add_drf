@@ -2,7 +2,7 @@
 # Quick start
 ## Live
 https://fierce-thicket-33452.herokuapp.com/api/v1/
-(does not work completely)
+
 ### setup environment:
 ```
 virtualenv -p python3.7 .venv
