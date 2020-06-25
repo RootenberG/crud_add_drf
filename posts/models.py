@@ -49,6 +49,7 @@ class Comment(models.Model):
 
 
 def reset_upvotes():
+    """Reset upvotese every 24 hours"""
     t = threading.Thread(target=cleaner)
     t.setDaemon(True)
     t.start()

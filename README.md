@@ -21,6 +21,10 @@ http://localhost:8000/api/v1/posts/id/like/
 ```
  http -a user:password POST "http://localhost:8000/api/v1/posts/id/like/" - upvote
  http GET "http://localhost:8000/api/v1/posts/id/" - simple get request
+```
+## If "no such table" problem appears try:
+```
+python manage.py makemigrations
 
-
+python manage.py migrate --run-syncdb
 ```
