@@ -30,4 +30,4 @@ RUN python manage.py runcrons
 RUN adduser -D myuser
 USER myuser
 # CMD gunicorn news.wsgi:application --bind 0.0.0.0:$PORT
-RUN python manage.py runserver 0.0.0.0:8000
+RUN python manage.py runserver 0.0.0.0:$PORT
