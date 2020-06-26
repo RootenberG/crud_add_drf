@@ -19,9 +19,9 @@ RUN apk update \
 # install dependencies
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-RUN python manage.py runcrons
 # copy project
 COPY . .
+RUN python manage.py runcrons
 
 # add and run as non-root user
 RUN adduser -D myuser
