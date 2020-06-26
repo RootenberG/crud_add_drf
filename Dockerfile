@@ -26,5 +26,3 @@ COPY . .
 # add and run as non-root user
 RUN adduser -D myuser
 USER myuser
-
-CMD python manage.py runcrons
