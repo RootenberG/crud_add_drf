@@ -29,4 +29,5 @@ RUN python manage.py runcrons
 # add and run as non-root user
 RUN adduser -D myuser
 USER myuser
-CMD gunicorn news.wsgi:application --bind 0.0.0.0:$PORT
+# CMD gunicorn news.wsgi:application --bind 0.0.0.0:$PORT
+CMD [ "python manage.py runserver 0.0.0.0:8000" ]
