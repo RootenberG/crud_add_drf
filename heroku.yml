@@ -1,10 +1,10 @@
 build:
     docker:
       web: Dockerfile
-cron:
-    web: python manage.py runcrons
 run:
-    web: gunicorn news.wsgi:application --bind 0.0.0.0:$PORT
+    web:
+        - python manage.py runcrons
+        - gunicorn news.wsgi:application --bind 0.0.0.0:$PORT
 release:
     image: web
     command:
