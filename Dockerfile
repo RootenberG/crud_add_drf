@@ -21,7 +21,7 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 # copy project
 COPY . .
-RUN python manage.py runcrons
+RUN python manage.py runcrons --silent
 
 # add and run as non-root user
 RUN adduser -D myuser
