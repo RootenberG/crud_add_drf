@@ -44,10 +44,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "django_cron",
     # Local
     "posts.apps.PostsConfig",
-    "rest_framework.authtoken",  # new
+    "rest_framework.authtoken",
     "rest_auth",
+]
+# cron
+CRON_CLASSES = [
+    "posts.cron.MyCronJob",
+    
 ]
 
 MIDDLEWARE = [

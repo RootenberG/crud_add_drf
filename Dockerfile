@@ -27,3 +27,4 @@ COPY . .
 RUN adduser -D myuser
 USER myuser
 
+CMD [ "python manage.py runcrons" ]

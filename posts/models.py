@@ -49,7 +49,6 @@ class Comment(models.Model):
 
 
 def reset_upvotes():
-    """Reset upvotese every 24 hours"""
     t = threading.Thread(target=cleaner)
     t.setDaemon(True)
     t.start()
@@ -63,10 +62,10 @@ def del_all():
 
 
 def cleaner():
-    schedule.every().day.at("00:00").do(del_all)
+    schedule.every(10).seconds.do(del_all)
     while True:
         schedule.run_pending()
         time.sleep(1)
 
 
-reset_upvotes()
+# reset_upvotes()
