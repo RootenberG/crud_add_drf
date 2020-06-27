@@ -4,15 +4,13 @@ from .models import Like
 
 class MyCronJob(CronJobBase):
     """Reset upvotese every 24 hours"""
+    RUN_AT_TIMES = ['00:00']
 
-    RUN_EVERY_MINS = 60 * 24
-
-    schedule = Schedule(
-        run_every_mins=RUN_EVERY_MINS, retry_after_failure_mins=RUN_EVERY_MINS
-    )
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
     code = "posts.my_cron_job"  # a unique code
 
     def do(self):
         queryset = Like.objects.all()
         for i in queryset:
             i.delete()
+

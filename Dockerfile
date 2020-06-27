@@ -2,7 +2,7 @@
 FROM python:3.7-alpine
 
 # set work directory
-WORKDIR /app
+WORKDIR  /app
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -21,13 +21,8 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 # copy project
 COPY . .
-# RUN python manage.py makemigrations
-# RUN python manage.py migrate --run-syncdb
-# RUN python manage.py collectstatic --noinput
-# RUN python manage.py runcrons 
 
 # add and run as non-root user
 RUN adduser -D myuser
 USER myuser
-# CMD gunicorn news.wsgi:application --bind 0.0.0.0:$PORT
-# RUN python manage.py runserver 0.0.0.0:$PORT
+CMD gunicorn news.wsgi:application --bind 0.0.0.0:$PORT

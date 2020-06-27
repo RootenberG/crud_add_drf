@@ -1,8 +1,9 @@
 ## crud_app_drf
 # Quick start
 ## Live
-https://fierce-thicket-33452.herokuapp.com/api/v1/
-
+https://fierce-thicket-33452.herokuapp.com/api/v1/ (via heroku.yml)
+https://polar-coast-99996.herokuapp.com/api/v1/ (dia docker-compose)
+ 
 ## Postman doc
 https://documenter.getpostman.com/view/11842172/SzzrYuCW
 ### setup environment:
