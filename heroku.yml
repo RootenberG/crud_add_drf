@@ -1,16 +1,16 @@
 build:
     docker:
       web: Dockerfile
-# run:
-#     web: gunicorn news.wsgi:application --bind 0.0.0.0:$PORT
-#     worker:
-#         command:
-#           - python python manage.py runcrons
-#         image: web
-# release:
-#     image: web
-#     command:
-#         - python manage.py makemigrations
-#         - python manage.py migrate --run-syncdb
-#         - python manage.py collectstatic --noinput
+run:
+    web: gunicorn news.wsgi:application --bind 0.0.0.0:$PORT
+    worker:
+        command:
+          - python python manage.py runcrons
+        image: web
+release:
+    image: web
+    command:
+        - python manage.py makemigrations
+        - python manage.py migrate --run-syncdb
+        - python manage.py collectstatic --noinput
         
