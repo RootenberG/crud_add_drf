@@ -7,7 +7,9 @@ class MyCronJob(CronJobBase):
 
     RUN_EVERY_MINS = 1
 
-    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    schedule = Schedule(
+        run_every_mins=RUN_EVERY_MINS, retry_after_failure_mins=RUN_EVERY_MINS
+    )
     code = "posts.my_cron_job"  # a unique code
 
     def do(self):
